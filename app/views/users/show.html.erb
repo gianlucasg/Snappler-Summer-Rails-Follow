@@ -1,0 +1,14 @@
+<h1>Usuario: <%= @user.name %></h1>
+<h1>Id: <%= @user.id %></h1>
+<p>Edad: <%= @user.age %></p>
+<%= button_to "Editar", edit_user_path(@user.id), method: :get %>
+<%= button_to "Volver a Usuarios", users_path, method: :get %>
+
+<h2>Usuarios que me siguen:</h2>
+<% @followers.each do |u| %>
+    <p>Usuario: <%= u %></p>
+<% end %>
+<h2>Usuarios que sigo:</h2>
+<% @followed_users.each do |u| %>
+    <p>Usuario: <%= u %></p>
+<% end %>

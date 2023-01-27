@@ -1,0 +1,11 @@
+es:
+  users:
+    users-list: "Lista de Usuarios"
+    add-user: "Agregar Usuario"
+    popular-users: "Usuarios Populares"
+    following-users: "Usuarios Seguidos"
+    followed-users: "Usuarios Seguidores"
+    see-user: "Ver Usuario"
+    delete: "Eliminar"
+    follow: "Seguir"
+    unfollow: "Dejar de Seguir"

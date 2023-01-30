@@ -1,15 +1,21 @@
 <h1><%= t('users.users-list') %></h1>
 <%= button_to t('users.add-user'), new_user_path , method: :get %>
 <h1><%=t('users.popular-users')%></h1>
-<% @populars.each do |pop| %>
+<% @presenter.populars.each do |pop| %>
   <p><%= pop.name %></p>
 <% end %>
-<% @users.each do |user| %>
+<%= form_with(model: @presenter.filter,url: users_path, method: :get) do |form| %>
+  <%= form.text_field :name,value: params[:name] %>
+  <%= form.number_field :min_follow, value: params[:min_follow] %>
+  <%= form.number_field :max_follow, value: params[:max_follow] %>
+  <%= form.submit %>
+<% end %>
+<% @presenter.users.each do |user| %>
   <div>
     <h2><%= user.name %></h2>
     <p><%= user.age %></p>
-    <p><%=t('users.followed-users')%> <%= @follower_count[user.id]%></p>
-    <p><%=t('users.following-users')%> <%= @following_count[user.id] %></p>
+    <p><%=t('users.followed-users')%> <%= @presenter.follower_count[user.id]%></p>
+    <p><%=t('users.following-users')%> <%= @presenter.following_count[user.id] %></p>
     <%= link_to t('users.see-user'),user_path(user.id) %>
     <% if @current_user != user%>
       <%= button_to t('users.delete'), user_path(user.id), method: :delete %>

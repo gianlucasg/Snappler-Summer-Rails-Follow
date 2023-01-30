@@ -4,11 +4,8 @@ class UsersController < ApplicationController
     before_action :set_current_user, only: [:index]
     
     def index #ruta a /users
-        @users = User.all
+        @presenter = UserPresenter.new(params)
         @followornot = @current_user.followings
-        @populars = @users.sort_by { |u| u.received_follows.size }.last(3)
-        @follower_count = @users.joins(:followers).group(:id).count()
-        @following_count =  @users.joins(:followings).group(:id).count()
         respond_to do |format|
             format.json {render json: build_json_index}
             format.html
